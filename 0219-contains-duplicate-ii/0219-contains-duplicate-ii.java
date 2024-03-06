@@ -3,20 +3,20 @@ class Solution {
         int start = 0;
         int end = 0;
         
-        Map<Integer, Integer> myMap = new HashMap<>();
+        Set<Integer> mySet = new HashSet<>();
         
         while(end < nums.length){
             
             if(end - start > k){
-                myMap.remove(nums[start]);
+                mySet.remove(nums[start]);
                 start++;
             }
             
-            if(myMap.containsKey(nums[end])){
+            if(!mySet.add(nums[end])){
                 return true;
             }
             
-            myMap.put(nums[end], end);
+            mySet.add(nums[end]);
             end++;
         }
         return false;
