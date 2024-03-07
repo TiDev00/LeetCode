@@ -3,15 +3,13 @@ class Solution {
         int maxSum = Integer.MIN_VALUE;
         int windowSum = 0;
         int start = 0;
-        int end = 0;
-        while(end < nums.length){
-            windowSum += nums[end];
-            maxSum = Math.max(maxSum, windowSum);
-            while(windowSum < 0 && start <= end){
+        for(int end = 0; end < nums.length; end++){
+            while(windowSum < 0 && start < end){
                 windowSum -= nums[start];
                 start++;
             }
-            end++;
+            windowSum += nums[end];
+            maxSum = Math.max(maxSum, windowSum);
         }
         return maxSum;
     }
